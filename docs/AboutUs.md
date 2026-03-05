@@ -11,12 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Xing Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cxyu629.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/cxyu629)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
@@ -31,14 +30,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### deltaMinor
+### Davin Khor
 
 <img src="images/deltaminor.png" width="200px">
 
 [[github](http://github.com/deltaMinor)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality, In charge of UI Mockup
 
 ### Allison Law
 
