@@ -28,8 +28,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/p12010304)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: In charge of UI component, maintaining the quality of project documents (UG/DG), and ensuring deliverables meet project standards.
 
 ### deltaMinor
 
