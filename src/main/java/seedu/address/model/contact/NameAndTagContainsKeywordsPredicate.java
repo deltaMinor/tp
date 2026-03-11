@@ -18,6 +18,12 @@ public class NameAndTagContainsKeywordsPredicate implements Predicate<Contact> {
     private final NameContainsKeywordsPredicate namePredicate;
     private final TagContainsKeywordsPredicate tagPredicate;
 
+    /**
+     * Creates a predicate that filters by name keywords and tag keywords.
+     *
+     * @param nameKeywords Keywords for matching contact names.
+     * @param tagKeywords Keywords for matching contact tags.
+     */
     public NameAndTagContainsKeywordsPredicate(List<String> nameKeywords, List<String> tagKeywords) {
         requireNonNull(nameKeywords);
         requireNonNull(tagKeywords);

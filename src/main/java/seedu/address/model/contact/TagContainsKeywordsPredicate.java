@@ -14,6 +14,11 @@ import seedu.address.commons.util.ToStringBuilder;
 public class TagContainsKeywordsPredicate implements Predicate<Contact> {
     private final List<String> keywords;
 
+    /**
+     * Creates a predicate that filters by tag keywords.
+     *
+     * @param keywords Keywords for matching contact tags.
+     */
     public TagContainsKeywordsPredicate(List<String> keywords) {
         requireNonNull(keywords);
         this.keywords = List.copyOf(keywords);
