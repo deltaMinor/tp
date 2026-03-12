@@ -26,7 +26,7 @@ import seedu.address.logic.commands.NotesCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.contact.NameAndTagContainsKeywordsPredicate;
 import seedu.address.model.contact.Notes;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ContactUtil;
@@ -75,8 +75,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new NameAndTagContainsKeywordsPredicate(keywords, List.of())), command);
     }
 
     @Test
