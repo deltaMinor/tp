@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,6 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NoteAddCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
@@ -94,9 +94,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_note() throws Exception {
-        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(AddNoteCommand.COMMAND_WORD + " 1 information");
-        assertTrue(command instanceof AddNoteCommand);
-        assertEquals(new AddNoteCommand(INDEX_FIRST_CONTACT, new Note("information")), command);
+        NoteAddCommand command = (NoteAddCommand) parser.parseCommand(NoteAddCommand.COMMAND_WORD + " 1 information");
+        assertTrue(command instanceof NoteAddCommand);
+        assertEquals(new NoteAddCommand(INDEX_FIRST_CONTACT, new Note("information")), command);
     }
 
     @Test

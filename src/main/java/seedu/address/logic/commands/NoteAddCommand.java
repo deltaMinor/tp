@@ -14,26 +14,25 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Note;
 
 /**
- * Remove lines of notes from an existing contact in the address book.
+ * Changes the notes of an existing contact in the address book.
  */
-public class RemoveNotesCommand extends NoteCommand {
+public class NoteAddCommand extends NoteCommand {
 
-    public static final String MESSAGE_REMOVE_NOTES_SUCCESS = "Removed notes from Contact: %1$s";
+    public static final String MESSAGE_ADD_NOTES_SUCCESS = "Added notes to Contact: %1$s";
 
     private final Index index;
-    private final int numLines;
+    private final Note note;
 
     /**
-     * @param index    Index of the contact in the filtered contact list.
-     * @param numLines How many lines of notes to remove.
+     * @param index of the contact in the filtered contact list to edit the notes
+     * @param note of the contact to be updated to
      */
-    public RemoveNotesCommand(Index index, int numLines) {
-        requireAllNonNull(index);
+    public NoteAddCommand(Index index, Note note) {
+        requireAllNonNull(index, note);
 
         this.index = index;
-        this.numLines = numLines;
+        this.note = note;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Contact> lastShownList = model.getFilteredContactList();
@@ -43,14 +42,10 @@ public class RemoveNotesCommand extends NoteCommand {
         }
 
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
-
         List<Note> newNotes = new ArrayList<>(contactToEdit.getNotes());
-
-        int numExistingLines = newNotes.size();
-        newNotes = newNotes.subList(Math.min(numLines, numExistingLines), numExistingLines);
-
+        newNotes.add(note);
         Contact editedContact = new Contact(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
-            contactToEdit.getAddress(), newNotes, contactToEdit.getTags());
+                contactToEdit.getAddress(), newNotes, contactToEdit.getTags());
 
         model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
@@ -59,11 +54,11 @@ public class RemoveNotesCommand extends NoteCommand {
     }
 
     /**
-     * Generates a command execution success message.
+     * Generates a command execution success message based on whether the notes are added to or removed from
      * {@code contactToEdit}.
      */
     private String generateSuccessMessage(Contact contactToEdit) {
-        return String.format(MESSAGE_REMOVE_NOTES_SUCCESS, Messages.format(contactToEdit));
+        return String.format(MESSAGE_ADD_NOTES_SUCCESS, Messages.format(contactToEdit));
     }
 
     @Override
@@ -74,13 +69,13 @@ public class RemoveNotesCommand extends NoteCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemoveNotesCommand)) {
+        if (!(other instanceof NoteAddCommand)) {
             return false;
         }
 
         // state check
-        RemoveNotesCommand e = (RemoveNotesCommand) other;
+        NoteAddCommand e = (NoteAddCommand) other;
         return index.equals(e.index)
-            && numLines == e.numLines;
+                && note.equals(e.note);
     }
 }

@@ -11,28 +11,25 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Note;
 
 /**
- * Changes the notes of an existing contact in the address book.
+ * Remove lines of notes from an existing contact in the address book.
  */
-public class AddNoteCommand extends NoteCommand {
+public class NoteClearCommand extends NoteCommand {
 
-    public static final String MESSAGE_ADD_NOTES_SUCCESS = "Added notes to Contact: %1$s";
+    public static final String MESSAGE_REMOVE_NOTES_SUCCESS = "Removed notes from Contact: %1$s";
 
     private final Index index;
-    private final Note note;
 
     /**
-     * @param index of the contact in the filtered contact list to edit the notes
-     * @param note of the contact to be updated to
+     * @param index Index of the contact in the filtered contact list.
      */
-    public AddNoteCommand(Index index, Note note) {
-        requireAllNonNull(index, note);
+    public NoteClearCommand(Index index) {
+        requireAllNonNull(index);
 
         this.index = index;
-        this.note = note;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Contact> lastShownList = model.getFilteredContactList();
@@ -42,10 +39,9 @@ public class AddNoteCommand extends NoteCommand {
         }
 
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
-        List<Note> newNotes = new ArrayList<>(contactToEdit.getNotes());
-        newNotes.add(note);
+
         Contact editedContact = new Contact(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
-                contactToEdit.getAddress(), newNotes, contactToEdit.getTags());
+            contactToEdit.getAddress(), new ArrayList<>(), contactToEdit.getTags());
 
         model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
@@ -54,11 +50,11 @@ public class AddNoteCommand extends NoteCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the notes are added to or removed from
+     * Generates a command execution success message.
      * {@code contactToEdit}.
      */
     private String generateSuccessMessage(Contact contactToEdit) {
-        return String.format(MESSAGE_ADD_NOTES_SUCCESS, Messages.format(contactToEdit));
+        return String.format(MESSAGE_REMOVE_NOTES_SUCCESS, Messages.format(contactToEdit));
     }
 
     @Override
@@ -69,13 +65,12 @@ public class AddNoteCommand extends NoteCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddNoteCommand)) {
+        if (!(other instanceof NoteClearCommand)) {
             return false;
         }
 
         // state check
-        AddNoteCommand e = (AddNoteCommand) other;
-        return index.equals(e.index)
-                && note.equals(e.note);
+        NoteClearCommand e = (NoteClearCommand) other;
+        return index.equals(e.index);
     }
 }
