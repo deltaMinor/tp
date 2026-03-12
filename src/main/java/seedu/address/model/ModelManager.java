@@ -107,6 +107,9 @@ public class ModelManager implements Model {
     @Override
     public void addContact(Contact contact) {
         updateFilteredContactList(contact::isSimilarContact);
+        if (filteredContacts.isEmpty()) {
+            updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        }
         addressBook.addContact(contact);
     }
 
