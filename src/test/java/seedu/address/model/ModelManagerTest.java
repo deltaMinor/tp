@@ -86,6 +86,8 @@ public class ModelManagerTest {
     public void hasContact_contactInAddressBook_returnsTrue() {
         modelManager.addContact(ALICE);
         assertTrue(modelManager.hasContact(ALICE));
+        modelManager.addContact(BENSON);
+        assertTrue(modelManager.hasContact(BENSON));
     }
 
     @Test
