@@ -52,6 +52,38 @@ public class ContactTest {
     }
 
     @Test
+    public void isSimilarContact() {
+        // same values -> returns true
+        Contact aliceCopy = new ContactBuilder(ALICE).build();
+        assertTrue(ALICE.isSimilarContact(aliceCopy));
+
+        // same object -> returns true
+        assertTrue(ALICE.isSimilarContact(ALICE));
+
+        // null -> returns false
+        assertFalse(ALICE.isSimilarContact(null));
+
+        // completely different contact -> returns false
+        assertFalse(ALICE.isSimilarContact(BOB));
+
+        // same name -> returns true
+        Contact bobName = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(BOB.isSimilarContact(bobName));
+
+        // same phone -> returns true
+        Contact bobPhone = new ContactBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(BOB.isSimilarContact(bobPhone));
+
+        // same email -> returns true
+        Contact bobEmail = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(BOB.isSimilarContact(bobEmail));
+
+        // same address -> returns false
+        Contact bobAddress = new ContactBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(BOB.isSimilarContact(bobAddress));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Contact aliceCopy = new ContactBuilder(ALICE).build();
