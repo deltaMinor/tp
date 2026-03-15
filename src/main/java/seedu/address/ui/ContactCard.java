@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -75,10 +76,17 @@ public class ContactCard extends UiPart<Region> {
             notesContainer.setVisible(false);
             notesContainer.setManaged(false);
         }
-        if (!contact.getTags().isEmpty()) {
+        if (!(contact.getTags().isEmpty() && contact.getReminders().isEmpty())) {
             contact.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            if (!contact.getReminders().isEmpty()) {
+                Label reminderLabel = new Label("Reminder");
+                if (ReminderWindow.hasDueReminders(List.of(contact))) {
+                    reminderLabel.getStyleClass().add("warning-label");
+                }
+                tags.getChildren().add(reminderLabel);
+            }
         } else {
             tags.setVisible(false);
             tags.setManaged(false);

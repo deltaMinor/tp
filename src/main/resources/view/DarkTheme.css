@@ -358,6 +358,10 @@
     -fx-font-size: 11;
 }
 
+#tags .warning-label {
+    -fx-background-color: #d06651;
+}
+
 /* Contact Detail Panel Styles */
 .contact-detail-panel {
     -fx-background-color: derive(#1d1d1d, 20%);
