@@ -3,7 +3,6 @@ package seedu.address.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.logic.parser.TimePointParser;
@@ -44,7 +43,7 @@ public class LastUpdated implements Comparable<LastUpdated> {
      * Returns a new {@code LastUpdated} using the current local date-time.
      */
     public static LastUpdated now() {
-        return new LastUpdated(TimePoint.of(LocalDateTime.now()));
+        return new LastUpdated(TimePoint.now());
     }
 
     /**

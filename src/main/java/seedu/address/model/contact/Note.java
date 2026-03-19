@@ -79,7 +79,7 @@ public class Note {
             return false;
         }
         TimePoint cutOffTime = TimePoint.of(LocalDateTime.now().plusDays(DUE_PERIOD_DAYS));
-        TimePoint nowTime = TimePoint.of(LocalDateTime.now());
+        TimePoint nowTime = TimePoint.now();
         return timePoint.isBefore(cutOffTime) && timePoint.isAfter(nowTime);
     }
 

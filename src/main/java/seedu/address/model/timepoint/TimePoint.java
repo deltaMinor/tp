@@ -74,6 +74,13 @@ public abstract class TimePoint<T> {
     }
 
     /**
+     * Returns a {@code TimePoint} of the current system time.
+     */
+    public static TimePoint now() {
+        return new DateTimeTimePoint(LocalDateTime.now());
+    }
+
+    /**
      * Compares against another TimePoint if they are on the same day.
      * If either TimePoint being compared contains their date as a string, always return false.
      *
