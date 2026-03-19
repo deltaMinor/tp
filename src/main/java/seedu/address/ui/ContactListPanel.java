@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
@@ -32,6 +33,8 @@ public class ContactListPanel extends UiPart<Region> {
         super(FXML);
         contactListView.setItems(contactList);
         contactListView.setCellFactory(listView -> new ContactListViewCell());
+
+        Platform.runLater(this::setUp);
     }
 
     /**
@@ -54,7 +57,7 @@ public class ContactListPanel extends UiPart<Region> {
     /**
      * Sets up the custom scroll bar functions of {@code ContactListPanel};
      */
-    public void setUp() {
+    private void setUp() {
         for (Node node : contactListView.lookupAll(".scroll-bar")) {
             if (node instanceof ScrollBar) {
                 final ScrollBar bar = (ScrollBar) node;
@@ -73,7 +76,7 @@ public class ContactListPanel extends UiPart<Region> {
             setUp();
         }
         if (scrollBar != null) {
-            scrollBar.setValue(scrollBar.getMin());
+            Platform.runLater(() -> scrollBar.setValue(scrollBar.getMin()));
         }
     }
 
@@ -85,7 +88,7 @@ public class ContactListPanel extends UiPart<Region> {
             setUp();
         }
         if (scrollBar != null) {
-            scrollBar.setValue(scrollBar.getMax());
+            Platform.runLater(() -> scrollBar.setValue(scrollBar.getMax()));
         }
     }
 }
