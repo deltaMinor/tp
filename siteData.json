@@ -87,9 +87,12 @@
       "title": "Implementation",
       "headings": {
         "implementation": "Implementation",
-        "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
-        "proposed-implementation": "Proposed Implementation",
-        "design-considerations": "Design considerations:",
+        "remove-field-on-empty-edit": "Remove field on empty edit",
+        "overview": "Overview",
+        "implementation-2": "Implementation",
+        "design-considerations": "Design considerations",
+        "undo-redo-feature": "Undo/redo feature",
+        "design-considerations-2": "Design considerations:",
         "proposed-data-archiving": "[Proposed] Data archiving"
       },
       "headingKeywords": {}
