@@ -19,6 +19,7 @@ import seedu.address.logic.commands.NoteEditCommand;
 import seedu.address.logic.commands.NoteRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Note;
+import seedu.address.model.timepoint.TimePoint;
 
 /**
  * Parses input arguments and creates a new {@code NoteCommand} object
@@ -138,8 +139,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         String newNoteText = editArgs[1];
 
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
-            return new NoteEditCommand(contactIndex, noteIndex,
-                    new Note(newNoteText, TimePointParser.toTimePoint(argMultimap.getValue(PREFIX_ON).get())));
+            TimePoint<?> timePoint = TimePointParser.toTimePoint(argMultimap.getValue(PREFIX_ON).get());
+            if (timePoint.isBefore(TimePoint.now())) {
+                throw new ParseException(NoteCommand.MESSAGE_INVALID_TIME);
+            }
+            return new NoteEditCommand(contactIndex, noteIndex, new Note(newNoteText, timePoint));
         }
 
         return new NoteEditCommand(contactIndex, noteIndex, new Note(newNoteText));
@@ -164,9 +168,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         Index index = parseIndex(noteArgs[0]);
 
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
-            return new NoteAddCommand(
-                    index,
-                    new Note(noteArgs[1], TimePointParser.toTimePoint(argMultimap.getValue(PREFIX_ON).get())));
+            TimePoint<?> timePoint = TimePointParser.toTimePoint(argMultimap.getValue(PREFIX_ON).get());
+            if (timePoint.isBefore(TimePoint.now())) {
+                throw new ParseException(NoteCommand.MESSAGE_INVALID_TIME);
+            }
+            return new NoteAddCommand(index, new Note(noteArgs[1], timePoint));
         }
 
         return new NoteAddCommand(index, new Note(noteArgs[1]));

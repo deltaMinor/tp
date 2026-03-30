@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR_LINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR_OLDEST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_LINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ON;
 
 /**
  * Parent class for all note-related commands.
@@ -29,5 +30,12 @@ public abstract class NoteCommand extends Command {
             + "Example [Edit line]: " + COMMAND_WORD + " 1 " + PREFIX_EDIT_LINE + "1 Updated note text.\n"
             + "Example [Clear line]: " + COMMAND_WORD + " 1 " + PREFIX_CLEAR_LINE + "2\n"
             + "Example [Clear oldest]: " + COMMAND_WORD + " 1 " + PREFIX_CLEAR_OLDEST + "1\n"
-            + "Example [Clear all]: " + COMMAND_WORD + " 1 " + PREFIX_CLEAR_ALL + "\n";
+            + "Example [Clear all]: " + COMMAND_WORD + " 1 " + PREFIX_CLEAR_ALL + "\n"
+            + "A note can act as a reminder using " + PREFIX_ON + "TIME\n"
+            + "Example: " + COMMAND_WORD + " 1 " + "Meet for lunch" + PREFIX_ON + "23 April\n"
+            + "sets a reminder for 23 April"
+            + "Parameters:\n"
+            + "- TIME (can be a date or time after the current time, or another phrase simply for the formatting)\n";
+
+    public static final String MESSAGE_INVALID_TIME = "Time entered for reminder cannot be earlier than now";
 }
