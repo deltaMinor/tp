@@ -179,6 +179,13 @@
       "headingKeywords": {}
     },
     {
+      "src": "user-guide/commands/delete-file.md",
+      "headings": {
+        "deleting-a-file-delete-file": "Deleting a file: delete file/"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "user-guide/commands/edit-contact.md",
       "headings": {
         "editing-a-contact-edit": "Editing a contact: edit"
@@ -228,6 +235,18 @@
       "headingKeywords": {}
     },
     {
+      "src": "user-guide/commands/set-theme.md",
+      "headings": {
+        "set-them-set-theme": "Set them: set theme/",
+        "available-themes": "Available themes",
+        "dark-mode-dark": "Dark Mode: dark",
+        "light-mode-light": "Light Mode: light",
+        "reading-mode-warm": "Reading Mode: warm",
+        "sakura-theme-sakura": "Sakura Theme: sakura"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "user-guide/commands/sort-contacts.md",
       "headings": {
         "sorting-contacts-sort": "Sorting contacts: sort"
@@ -242,9 +261,23 @@
       "headingKeywords": {}
     },
     {
+      "src": "user-guide/commands/use-different-file.md",
+      "headings": {
+        "use-a-different-file-set-file": "Use a different file: set file/"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "user-guide/commands/view-contact.md",
       "headings": {
         "viewing-a-specific-contact-view": "Viewing a specific contact: view"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "user-guide/commands/view-files.md",
+      "headings": {
+        "viewing-available-files-view-file": "Viewing available files: view file/"
       },
       "headingKeywords": {}
     },
