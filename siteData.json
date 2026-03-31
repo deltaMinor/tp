@@ -193,6 +193,14 @@
       "headingKeywords": {}
     },
     {
+      "src": "user-guide/commands/file.md",
+      "headings": {
+        "open-file-file-open": "Open file: file open/",
+        "deleting-a-file-file-delete": "Deleting a file: file delete/"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "user-guide/commands/find-contacts.md",
       "headings": {
         "finding-contacts-find": "Finding contacts: find"
@@ -201,7 +209,9 @@
     },
     {
       "src": "user-guide/commands/index.md",
-      "headings": {},
+      "headings": {
+        "command-summary": "Command summary"
+      },
       "headingKeywords": {}
     },
     {
@@ -226,6 +236,18 @@
       "headingKeywords": {}
     },
     {
+      "src": "user-guide/commands/set-theme.md",
+      "headings": {
+        "set-theme-theme": "Set theme: theme",
+        "available-themes": "Available themes",
+        "dark-mode-dark": "Dark Mode: dark",
+        "light-mode-light": "Light Mode: light",
+        "reading-mode-book": "Reading Mode: book",
+        "sakura-theme-sakura": "Sakura Theme: sakura"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "user-guide/commands/sort-contacts.md",
       "headings": {
         "sorting-contacts-sort": "Sorting contacts: sort"
@@ -240,16 +262,17 @@
       "headingKeywords": {}
     },
     {
-      "src": "user-guide/commands/view-contact.md",
+      "src": "user-guide/commands/view-help.md",
       "headings": {
-        "viewing-a-specific-contact-view": "Viewing a specific contact: view"
+        "viewing-help-help": "Viewing help: help"
       },
       "headingKeywords": {}
     },
     {
-      "src": "user-guide/commands/view-help.md",
+      "src": "user-guide/commands/view.md",
       "headings": {
-        "viewing-help-help": "Viewing help: help"
+        "viewing-a-specific-contact-view": "Viewing a specific contact: view",
+        "viewing-available-files-view-files": "Viewing available files: view files"
       },
       "headingKeywords": {}
     },
