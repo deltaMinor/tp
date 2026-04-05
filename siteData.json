@@ -112,9 +112,17 @@
         "quick-start": "Quick start",
         "features": "Features",
         "commands": "Commands",
+        "adding-contacts": "Adding contacts",
+        "editing-contacts": "Editing contacts",
+        "deleting-contacts": "Deleting contacts",
+        "adding-notes-to-contacts": "Adding notes to contacts",
+        "filtering-and-sorting-the-context-list": "Filtering and sorting the context list",
+        "undo-and-redo": "Undo and redo",
+        "setting-the-theme": "Setting the theme",
+        "maintaining-separate-data-files": "Maintaining separate data files",
+        "exiting-b2b4u": "Exiting B2B4U",
         "saving-data": "Saving data",
-        "editing-the-data-file": "Editing the data file",
-        "separate-data-files": "Separate data files",
+        "editing-the-data-file-directly": "Editing the data file directly",
         "faq-and-amp-known-issues": "FAQ &amp; Known Issues",
         "faq": "FAQ",
         "known-issues": "Known Issues",
@@ -141,7 +149,8 @@
     {
       "src": "user-guide/add-contact.md",
       "headings": {
-        "adding-a-contact-add": "Adding a contact: add"
+        "adding-a-contact-add": "Adding a contact: add",
+        "similar-contacts": "Similar contacts"
       },
       "headingKeywords": {}
     },
