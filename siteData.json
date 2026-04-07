@@ -109,9 +109,10 @@
       "title": "User Guide",
       "headings": {
         "b2b4u-user-guide": "B2B4U User Guide",
+        "table-of-contents": "Table of Contents",
         "quick-start": "Quick start",
         "features": "Features",
-        "commands": "Commands",
+        "command-format": "Command Format",
         "adding-contacts": "Adding contacts",
         "editing-contacts": "Editing contacts",
         "deleting-contacts": "Deleting contacts",
@@ -123,7 +124,6 @@
         "exiting-b2b4u": "Exiting B2B4U",
         "saving-data": "Saving data",
         "editing-the-data-file-directly": "Editing the data file directly",
-        "faq-and-amp-known-issues": "FAQ &amp; Known Issues",
         "faq": "FAQ",
         "known-issues": "Known Issues",
         "command-summary": "Command summary"
@@ -135,6 +135,18 @@
       "title": "",
       "headings": {
         "business-to-business-for-you-b2b4u": "Business to Business for You (B2B4U)"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/deltaminor.md",
+      "title": "deltaMinor's Project Portfolio Page",
+      "headings": {
+        "overview-b2b4u": "Overview: B2B4U",
+        "new-features": "New Features",
+        "code-contribution": "Code contribution",
+        "contribution-to-documentation": "Contribution to Documentation",
+        "contribution-to-team-based-tasks": "Contribution to Team-Based Tasks"
       },
       "headingKeywords": {}
     },
