@@ -117,6 +117,7 @@
         "editing-contacts": "Editing contacts",
         "deleting-contacts": "Deleting contacts",
         "adding-notes-to-contacts": "Adding notes to contacts",
+        "reminders": "Reminders",
         "filtering-and-sorting-the-context-list": "Filtering and sorting the context list",
         "undo-and-redo": "Undo and redo",
         "setting-the-theme": "Setting the theme",
@@ -212,7 +213,8 @@
     {
       "src": "user-guide/find-contacts.md",
       "headings": {
-        "finding-contacts-find": "Finding contacts: find"
+        "finding-contacts-find": "Finding contacts: find",
+        "clearing-filters": "Clearing filters"
       },
       "headingKeywords": {}
     },
@@ -233,7 +235,13 @@
     {
       "src": "user-guide/notes.md",
       "headings": {
-        "adding-notes-reminders-to-a-contact-note": "Adding notes/reminders to a contact: note"
+        "adding-notes-reminders-to-a-contact-note": "Adding notes/reminders to a contact: note",
+        "add-a-note": "Add a note",
+        "edit-a-specific-note": "Edit a specific note",
+        "remove-a-specific-note": "Remove a specific note",
+        "remove-the-first-n-notes": "Remove the first N notes",
+        "clear-all-notes": "Clear all notes",
+        "reminders": "Reminders"
       },
       "headingKeywords": {}
     },
@@ -252,14 +260,18 @@
         "dark-mode-dark": "Dark Mode: dark",
         "light-mode-light": "Light Mode: light",
         "reading-mode-book": "Reading Mode: book",
-        "sakura-theme-sakura": "Sakura Theme: sakura"
+        "sakura-theme-sakura": "Sakura Theme: sakura",
+        "jirai-kei-theme-jirai": "Jirai Kei Theme: jirai",
+        "techcore-theme-tech": "Techcore Theme: tech"
       },
       "headingKeywords": {}
     },
     {
       "src": "user-guide/sort-contacts.md",
       "headings": {
-        "sorting-contacts-sort": "Sorting contacts: sort"
+        "sorting-contacts-sort": "Sorting contacts: sort",
+        "sort-order-by-field": "Sort order by field",
+        "resetting-sort-order": "Resetting sort order"
       },
       "headingKeywords": {}
     },
