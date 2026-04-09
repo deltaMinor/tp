@@ -6,7 +6,7 @@ skinparam ClassBackgroundColor #FFFFAA
 
 title After command "list"
 
-package States <<rectangle>> {
+package snapshots <<rectangle>> {
     class State1 as "<u>s0:Snapshot</u>"
     class State2 as "<u>s1:Snapshot</u>"
     class State3 as "<u>s2:Snapshot</u>"

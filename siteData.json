@@ -110,24 +110,24 @@
       "headings": {
         "b2b4u-user-guide": "B2B4U User Guide",
         "table-of-contents": "Table of Contents",
-        "quick-start": "Quick start",
+        "quick-start": "Quick Start",
         "features": "Features",
         "command-format": "Command Format",
-        "adding-contacts": "Adding contacts",
-        "editing-contacts": "Editing contacts",
-        "deleting-contacts": "Deleting contacts",
-        "adding-notes-to-contacts": "Adding notes to contacts",
-        "reminders": "Reminders",
-        "filtering-and-sorting-the-context-list": "Filtering and sorting the context list",
-        "undo-and-redo": "Undo and redo",
-        "setting-the-theme": "Setting the theme",
-        "maintaining-separate-data-files": "Maintaining separate data files",
+        "adding-contacts": "Adding Contacts",
+        "editing-contacts": "Editing Contacts",
+        "deleting-contacts": "Deleting Contacts",
+        "viewing-a-contact": "Viewing a Contact",
+        "managing-notes-for-a-contact": "Managing Notes for a Contact",
+        "filtering-and-sorting-the-contact-list": "Filtering and Sorting the Contact List",
+        "undo-and-redo": "Undo and Redo",
+        "setting-the-theme": "Setting the Theme",
+        "saving-data": "Saving Data",
+        "maintaining-separate-data-files": "Maintaining Separate Data Files",
+        "editing-the-data-file-directly": "Editing the Data File Directly",
         "exiting-b2b4u": "Exiting B2B4U",
-        "saving-data": "Saving data",
-        "editing-the-data-file-directly": "Editing the data file directly",
         "faq": "FAQ",
         "known-issues": "Known Issues",
-        "command-summary": "Command summary"
+        "command-summary": "Command Summary"
       },
       "headingKeywords": {}
     },
@@ -189,9 +189,9 @@
       "headingKeywords": {}
     },
     {
-      "src": "user-guide/close-view-contact.md",
+      "src": "user-guide/close-view.md",
       "headings": {
-        "closing-the-contact-detail-panel-close-view": "Closing the contact detail panel: close view"
+        "closing-the-view-panel-close-view": "Closing the view panel: close view"
       },
       "headingKeywords": {}
     },
