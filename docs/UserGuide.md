@@ -127,6 +127,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED]
 
 - At least **one** optional field must be provided.
 - Editing tags **replaces all existing tags** rather than adding to them.
+- You can clear a field by entering its prefix without additional parameters directly after.
 
 **Examples:**
 - `edit 1 p/91234567 e/johndoe@example.com`
