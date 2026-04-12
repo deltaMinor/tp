@@ -140,6 +140,27 @@
       "headingKeywords": {}
     },
     {
+      "src": "team/allisonllx.md",
+      "title": "allisonllx's Project Portfolio Page",
+      "headings": {
+        "overview-b2b4u": "Overview: B2B4U",
+        "new-features": "New Features",
+        "enhancements-to-existing-features": "Enhancements to existing features",
+        "code-contribution": "Code contribution",
+        "documentation": "Documentation",
+        "community": "Community"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/chp.md",
+      "title": "Chen Ping's Project Portfolio Page",
+      "headings": {
+        "project-business-to-business-for-you": "Project: Business to Business for You"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "team/deltaminor.md",
       "title": "deltaMinor's Project Portfolio Page",
       "headings": {
