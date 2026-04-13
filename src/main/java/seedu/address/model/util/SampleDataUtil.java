@@ -38,7 +38,7 @@ public class SampleDataUtil {
                     Optional.of(new Address("Blk 30 Geylang Street 29, #06-40")),
                     Optional.of(new LastContacted(TimePointParser.toTimePoint("12 March 2026"))),
                     List.of(new Note("CEO: @{220e8400-e29b-41d4-a716-446655440000}"),
-                            new Note("Currently employing @{330e8400-e29b-41d4-a716-446655440000} and"
+                            new Note("Currently employing @{330e8400-e29b-41d4-a716-446655440000} and "
                                     + "@{550e8400-e29b-41d4-a716-446655440000}"),
                             new Note("Worked with @{440e8400-e29b-41d4-a716-446655440000} before")),
                     getTagSet("client")),
