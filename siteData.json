@@ -124,6 +124,8 @@
         "quick-start": "Quick Start",
         "features": "Features",
         "command-format": "Command Format",
+        "flexible-time-input": "Flexible Time Input",
+        "contact-fields-and-prefixes": "Contact Fields and Prefixes",
         "adding-contacts": "Adding Contacts",
         "editing-contacts": "Editing Contacts",
         "deleting-contacts": "Deleting Contacts",
@@ -302,14 +304,7 @@
       "src": "user-guide/set-theme.md",
       "headings": {
         "set-theme-theme": "Set theme: theme",
-        "available-themes": "Available themes",
-        "dark-mode-dark": "Dark Mode: dark",
-        "light-mode-light": "Light Mode: light",
-        "reading-mode-book": "Reading Mode: book",
-        "sakura-theme-sakura": "Sakura Theme: sakura",
-        "grass-theme-grass": "Grass Theme: grass",
-        "techcore-tech": "Techcore: tech",
-        "jirai-kei-jirai": "Jirai Kei: jirai"
+        "supported-themes": "Supported themes"
       },
       "headingKeywords": {}
     },
