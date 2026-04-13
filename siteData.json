@@ -211,6 +211,7 @@
       "src": "user-guide/add-contact.md",
       "headings": {
         "adding-a-contact-add": "Adding a contact: add",
+        "duplicate-contacts": "Duplicate contacts",
         "similar-contacts": "Similar contacts"
       },
       "headingKeywords": {}
