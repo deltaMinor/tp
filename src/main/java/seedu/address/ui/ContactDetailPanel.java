@@ -119,6 +119,7 @@ public class ContactDetailPanel extends UiPart<Region> {
                         noteLabel.hideHeader();
                         Label indexLabel = new Label((notes.getChildren().size() + 1) + ". ");
                         indexLabel.getStyleClass().add("note-index-label");
+                        indexLabel.setMinWidth(Region.USE_PREF_SIZE);
                         HBox indexedNoteLabel = new HBox(indexLabel, noteLabel);
                         notes.getChildren().add(indexedNoteLabel); });
             UiUtil.show(notesContainer);

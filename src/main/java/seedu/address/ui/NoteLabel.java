@@ -24,6 +24,8 @@ public class NoteLabel extends HBox {
 
     private static final String FXML = "/view/NoteLabel.fxml";
 
+    private String style = "-fx-font-family: 'Segoe UI'; -fx-font-size: 13px; -fx-fill: white;";
+
     @FXML
     private Label reminderHeader;
     @FXML
@@ -34,9 +36,9 @@ public class NoteLabel extends HBox {
     private Label time;
 
     /**
-     * Creates a {@code NoteLabel} with contact reference resolution.
+     * Creates a {@code NoteLabel} with a set style and contact reference resolution.
      */
-    public NoteLabel(Note note, ObservableList<Contact> contacts) {
+    public NoteLabel(Note note, String style, ObservableList<Contact> contacts) {
         requireNonNull(note);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML));
 
@@ -52,7 +54,8 @@ public class NoteLabel extends HBox {
         if (note.hasContactReferences() && contacts != null) {
             // Replace the plain label with a TextFlow containing styled contact names
             int idx = getChildren().indexOf(text);
-            TextFlow textFlow = buildRichNoteText(note.value, contacts);
+            TextFlow textFlow = buildRichNoteText(note.value, style, contacts);
+            textFlow.getStyleClass().add(style);
             getChildren().set(idx, textFlow);
         } else {
             text.setText(note.value);
@@ -65,20 +68,7 @@ public class NoteLabel extends HBox {
             UiUtil.hide(reminderSeparator);
             UiUtil.hide(time);
         }
-    }
 
-    /**
-     * Creates a {@code NoteLabel} without contact reference resolution.
-     */
-    public NoteLabel(Note note) {
-        this(note, (ObservableList<Contact>) null);
-    }
-
-    /**
-     * Creates a {@code NoteLabel} with a set style and contact reference resolution.
-     */
-    public NoteLabel(Note note, String style, ObservableList<Contact> contacts) {
-        this(note, contacts);
         reminderHeader.getStyleClass().add(style);
         text.getStyleClass().add(style);
         reminderSeparator.getStyleClass().add(style);
@@ -86,17 +76,10 @@ public class NoteLabel extends HBox {
     }
 
     /**
-     * Creates a {@code NoteLabel} with a set style.
-     */
-    public NoteLabel(Note note, String style) {
-        this(note, style, null);
-    }
-
-    /**
      * Builds a {@code TextFlow} from note text, resolving {@code @{UUID}} references
      * to bold/underlined contact names.
      */
-    private TextFlow buildRichNoteText(String noteText, ObservableList<Contact> contacts) {
+    private TextFlow buildRichNoteText(String noteText, String style, ObservableList<Contact> contacts) {
         TextFlow textFlow = new TextFlow();
         Matcher matcher = Note.CONTACT_REF_PATTERN.matcher(noteText);
         int lastEnd = 0;
@@ -105,7 +88,7 @@ public class NoteLabel extends HBox {
             // Add plain text before this match
             if (matcher.start() > lastEnd) {
                 Text plainText = new Text(noteText.substring(lastEnd, matcher.start()));
-                plainText.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 13px; -fx-fill: white;");
+                plainText.getStyleClass().add(style);
                 textFlow.getChildren().add(plainText);
             }
 
@@ -120,7 +103,6 @@ public class NoteLabel extends HBox {
 
             Text refText = new Text(displayName);
             refText.getStyleClass().add("contact-reference");
-            refText.setStyle("-fx-font-size: 13px;");
             textFlow.getChildren().add(refText);
 
             lastEnd = matcher.end();
@@ -129,7 +111,7 @@ public class NoteLabel extends HBox {
         // Add remaining plain text
         if (lastEnd < noteText.length()) {
             Text plainText = new Text(noteText.substring(lastEnd));
-            plainText.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 13px; -fx-fill: white;");
+            plainText.setStyle(style);
             textFlow.getChildren().add(plainText);
         }
 

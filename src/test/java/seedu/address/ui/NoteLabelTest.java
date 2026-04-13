@@ -25,38 +25,6 @@ import seedu.address.testutil.ContactBuilder;
 public class NoteLabelTest extends GuiUnitTest {
 
     @Test
-    public void constructor_plainNote_success() throws Exception {
-        runAndWait(() -> {
-            Note note = new Note("plain note text");
-            assertDoesNotThrow(() -> new NoteLabel(note));
-        });
-    }
-
-    @Test
-    public void constructor_noteWithStyle_success() throws Exception {
-        runAndWait(() -> {
-            Note note = new Note("styled note");
-            assertDoesNotThrow(() -> new NoteLabel(note, "detail-value"));
-        });
-    }
-
-    @Test
-    public void constructor_noteWithReminder_success() throws Exception {
-        runAndWait(() -> {
-            Note note = new Note("reminder note", TimePoint.of("2026-12-25"));
-            assertDoesNotThrow(() -> new NoteLabel(note));
-        });
-    }
-
-    @Test
-    public void constructor_noteWithReminderAndStyle_success() throws Exception {
-        runAndWait(() -> {
-            Note note = new Note("reminder note", TimePoint.of("2026-12-25"));
-            assertDoesNotThrow(() -> new NoteLabel(note, "detail-value"));
-        });
-    }
-
-    @Test
     public void constructor_noteWithContactRef_resolvesName() throws Exception {
         runAndWait(() -> {
             Contact alice = new ContactBuilder().withName("Alice Pauline").build();
@@ -64,7 +32,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("worked with @{" + aliceId + "}");
             ObservableList<Contact> contacts = FXCollections.observableArrayList(alice);
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             assertNotNull(label);
 
             // Should contain a TextFlow instead of a plain label
@@ -103,7 +71,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("worked with @{" + unknownId + "}");
             ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             assertNotNull(label);
 
             // Should still contain a TextFlow with fallback text
@@ -126,7 +94,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("met @{" + bobId + "} at conference");
             ObservableList<Contact> contacts = FXCollections.observableArrayList(bob);
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             TextFlow textFlow = (TextFlow) label.getChildren().stream()
                     .filter(node -> node instanceof TextFlow)
                     .findFirst().get();
@@ -153,7 +121,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("worked with @{" + someId + "}");
 
             // null contacts should not create TextFlow
-            NoteLabel label = new NoteLabel(note, (ObservableList<Contact>) null);
+            NoteLabel label = new NoteLabel(note, "detail-value", (ObservableList<Contact>) null);
             boolean hasTextFlow = label.getChildren().stream()
                     .anyMatch(node -> node instanceof TextFlow);
             assertFalse(hasTextFlow);
@@ -170,7 +138,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("@{" + aliceId + "} and @{" + bobId + "}");
             ObservableList<Contact> contacts = FXCollections.observableArrayList(alice, bob);
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             TextFlow textFlow = (TextFlow) label.getChildren().stream()
                     .filter(node -> node instanceof TextFlow)
                     .findFirst().get();
@@ -183,8 +151,9 @@ public class NoteLabelTest extends GuiUnitTest {
     @Test
     public void hideHeader_hidesReminderHeader() throws Exception {
         runAndWait(() -> {
+            ObservableList<Contact> contacts = FXCollections.observableArrayList();
             Note note = new Note("test note", TimePoint.of("2026-12-25"));
-            NoteLabel label = new NoteLabel(note);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             assertDoesNotThrow(() -> label.hideHeader());
         });
     }
@@ -197,7 +166,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("@{" + aliceId + "} is great");
             ObservableList<Contact> contacts = FXCollections.observableArrayList(alice);
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             TextFlow textFlow = (TextFlow) label.getChildren().stream()
                     .filter(node -> node instanceof TextFlow)
                     .findFirst().get();
@@ -216,7 +185,7 @@ public class NoteLabelTest extends GuiUnitTest {
             Note note = new Note("works with @{" + aliceId + "}");
             ObservableList<Contact> contacts = FXCollections.observableArrayList(alice);
 
-            NoteLabel label = new NoteLabel(note, contacts);
+            NoteLabel label = new NoteLabel(note, "detail-value", contacts);
             TextFlow textFlow = (TextFlow) label.getChildren().stream()
                     .filter(node -> node instanceof TextFlow)
                     .findFirst().get();
