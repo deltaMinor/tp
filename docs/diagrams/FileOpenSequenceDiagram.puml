@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FileCommandParser" as FileCommandParser LOGIC_COLOR
+participant "e:FileOpenCommand" as FileOpenCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("file open/new_list")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("file open/new_list")
+activate AddressBookParser
+
+create FileCommandParser
+AddressBookParser -> FileCommandParser
+activate FileCommandParser
+
+FileCommandParser --> AddressBookParser
+deactivate FileCommandParser
+
+AddressBookParser -> FileCommandParser : parse("open/new_list")
+activate FileCommandParser
+
+note right of FileCommandParser
+  Check: file name must contain
+  only alphanumeric characters
+  and the underscore
+end note
+
+create FileOpenCommand
+FileCommandParser -> FileOpenCommand
+activate FileOpenCommand
+
+FileOpenCommand --> FileCommandParser :
+deactivate FileOpenCommand
+
+FileCommandParser --> AddressBookParser : e
+deactivate FileCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FileCommandParser -[hidden]-> AddressBookParser
+destroy FileCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> FileOpenCommand : execute(m)
+activate FileOpenCommand
+
+FileOpenCommand -> Model : setAddressBookFilePath(filePath)
+activate Model
+
+Model --> FileOpenCommand
+deactivate Model
+
+FileOpenCommand -> Model : resetDisplayedContactList()
+activate Model
+
+Model --> FileOpenCommand
+deactivate Model
+
+
+note right of FileOpenCommand
+  Check: If the data file at
+  new_list.json cannot be
+  loaded correctly, an empty
+  ReadOnlyAddressBook will be
+  created for data
+end note
+
+FileOpenCommand -> Model : setAddressBook(data)
+activate Model
+
+Model --> FileOpenCommand
+deactivate Model
+
+create CommandResult
+FileOpenCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FileOpenCommand
+deactivate CommandResult
+
+FileOpenCommand --> LogicManager : r
+deactivate FileOpenCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

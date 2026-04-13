@@ -222,7 +222,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Overview
 
-The edit command supports removing optional fields (phone, email, address, last contacted date) by supplying the field prefix with no argument. For example, `edit 1 p/` removes the phone number from the first contact.
+The `edit` command supports removing optional fields (phone, email, address, last contacted date) by supplying the field prefix with no argument. For example, `edit 1 p/` removes the phone number from the first contact.
 
 #### Implementation
 
@@ -334,9 +334,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Overview
+
+The `file open/` command allows the user to change to a different contact list file and archive their older contacts.
+For example, `file open/new_list` will begin accessing `new_list.json` while `addressbook.json` remains.
+
+#### Implementation
+
+The following sequence diagram shows how the file management mechanism works when the user executes `file open/new_list`:
+
+<puml src="{{ baseUrl }}/diagrams/FileOpenSequenceDiagram.puml" alt="FileOpenSequenceDiagram" />
+
+1. `FileCommandParser` checks that the file name is valid.
+2. `FileOpenCommand` first sets the file path in the `UserPrefs` of the model and removes any user-input filters and sort orders.
+3. `FileOpenCommand` checks for the file at `data/new_list.json`, if it does not exist or an error arises when accessing it, a new empty file is created.
+4. The file data is saved to the model.
 
 --------------------------------------------------------------------------------------------------------------------
 
