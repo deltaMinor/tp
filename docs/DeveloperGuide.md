@@ -532,16 +532,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Ensure **Java 17 or later** is installed.
 
-   2. Double-click the jar file, or open a terminal in the folder and run `java -jar B2B4U.jar`. <br>
+   1. Download the jar file and copy into an empty folder.
+
+   1. Open a terminal in the folder and run `java -jar B2B4U.jar`. <br>
      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running `java -jar B2B4U.jar`.<br>
      Expected: The most recent window size and location is retained.
 
 ### Deleting a contact
