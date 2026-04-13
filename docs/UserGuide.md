@@ -8,6 +8,8 @@
 
 Business to Business for You (B2B4U) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, B2B4U can get your contact management tasks done faster than traditional GUI apps.
 
+B2B4U is designed for **consultants at medium-sized consulting or PR agencies** who need to manage long-term relationships with clients and companies. A contact in B2B4U can represent an individual person or a business entity, with optional fields to accommodate different contact types (e.g. a business may not have a physical address). It provides quick, up-to-date access to client data through a simple, unified interface — helping you deliver fast and on-point responses.
+
 ## Table of Contents
 
 - [B2B4U User Guide](#b2b4u-user-guide)
@@ -228,7 +230,9 @@ If an incorrectly input date/time is indeed recorded, the user should use one of
 
 **Name(**`n/`**):**
 - The contact's name.
-- Can only contain alphanumeric characters and spaces.
+- Can contain symbols `.` `'` `-` `_` `&` `/` and letter characters from any language.
+- First character must be a letter character.
+- Must be non-empty.
 
 **Phone number(**`p/`**):**
 - The contact's phone number.
@@ -272,7 +276,6 @@ To add a new contact, use the [`add` command]({{ baseUrl }}/user-guide/add-conta
 Format: `add n/NAME (p/PHONE | e/EMAIL) [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…​`
 
 - At least **one** (or both) of `p/PHONE` or `e/EMAIL` must be provided.
-- Names are standardized to **Title Case**.
 - After adding, if similar contacts exist, the list will filter to show them.
 
 **Examples:**
