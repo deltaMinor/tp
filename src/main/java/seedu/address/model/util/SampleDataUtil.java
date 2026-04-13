@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.core.timepoint.TimePoint;
 import seedu.address.logic.parser.TimePointParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -37,10 +36,10 @@ public class SampleDataUtil {
                     new Name("Alex & Co."), Optional.of(new Phone("64443287")),
                     Optional.of(new Email("service@alexco.com")),
                     Optional.of(new Address("Blk 30 Geylang Street 29, #06-40")),
-                    Optional.empty(),
+                    Optional.of(new LastContacted(TimePointParser.toTimePoint("12 March 2026"))),
                     List.of(new Note("CEO: @{220e8400-e29b-41d4-a716-446655440000}"),
-                            new Note("Currently employing @{330e8400-e29b-41d4-a716-446655440000} and" +
-                                    "@{550e8400-e29b-41d4-a716-446655440000}"),
+                            new Note("Currently employing @{330e8400-e29b-41d4-a716-446655440000} and"
+                                    + "@{550e8400-e29b-41d4-a716-446655440000}"),
                             new Note("Worked with @{440e8400-e29b-41d4-a716-446655440000} before")),
                     getTagSet("client")),
             new Contact(UUID.fromString("220e8400-e29b-41d4-a716-446655440000"),
@@ -50,7 +49,9 @@ public class SampleDataUtil {
                     Optional.of(new LastContacted(TimePointParser.toTimePoint("12 March 2026"))),
                     List.of(new Note("CEO of @{110e8400-e29b-41d4-a716-446655440000}"),
                             new Note("To meet", TimePointParser.toTimePoint("15 July 2026")),
-                            new Note("Good friend of @{550e8400-e29b-41d4-a716-446655440000}")),
+                            new Note("Planning to have a company event in 2027 January"),
+                            new Note("First met in 2025 Metro Gala"),
+                            new Note("Good friends with @{550e8400-e29b-41d4-a716-446655440000}")),
                     getTagSet("CEO")),
             new Contact(UUID.fromString("330e8400-e29b-41d4-a716-446655440000"),
                     new Name("Bernice Yu"), Optional.of(new Phone("99272758")),
@@ -74,7 +75,7 @@ public class SampleDataUtil {
                     List.of(new Note("To meet", TimePointParser.toTimePoint("3 Aug 2026"))),
                     getTagSet("CEO")),
             new Contact(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"),
-                new Name("David Li"), Optional.of(new Phone("91031282")),
+                new Name("David Li"), Optional.empty(),
                 Optional.of(new Email("lidavid@example.com")),
                 Optional.empty(),
                 Optional.empty(),
@@ -85,7 +86,8 @@ public class SampleDataUtil {
                 Optional.of(new Email("irfan@example.com")),
                 Optional.of(new Address("Blk 47 Tampines Street 20, #17-35")),
                 Optional.empty(),
-                EMPTY_NOTES,
+                List.of(new Note("Is currently self-employed"),
+                        new Note("Knows @{880e8400-e29b-41d4-a716-446655440000}")),
                 getTagSet("commission:250", "marketing", "service", "contractor")),
             new Contact(UUID.fromString("770e8400-e29b-41d4-a716-446655440000"),
                     new Name("Service4U"), Optional.of(new Phone("92624417")),
