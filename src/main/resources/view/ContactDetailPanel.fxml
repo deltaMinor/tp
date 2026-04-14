@@ -87,7 +87,7 @@
                 </padding>
                 <Label styleClass="detail-label" text="Notes:" />
                     <VBox>
-                        <VBox fx:id="notes" styleClass="detail-value"/>
+                        <VBox fx:id="notes" styleClass="detail-value" alignment="CENTER_LEFT"/>
                     </VBox>
             </VBox>
         </VBox>

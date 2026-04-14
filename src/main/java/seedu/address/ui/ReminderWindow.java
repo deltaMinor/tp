@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -53,7 +54,8 @@ public class ReminderWindow extends UiPart<Stage> {
             contact.getNotes().stream()
                     .filter(Note :: hasDueReminder)
                     .forEach(reminder -> {
-                        NoteLabel reminderLabel = new NoteLabel(reminder);
+                        NoteLabel reminderLabel =
+                                new NoteLabel(reminder, "label", FXCollections.observableList(contactList));
                         reminderLabel.hideHeader();
                         reminderMessageContainer.getChildren().add(reminderLabel); });
         });

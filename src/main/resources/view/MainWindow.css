@@ -292,6 +292,24 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 14px;
     -fx-text-fill: -main-font-color;
+    -fx-fill: -main-font-color;
+    -fx-padding: 3 0 0 0;
+}
+
+.contact-detail-panel .detail-value {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-text-fill: -main-font-color;
+    -fx-fill: -main-font-color;
+    -fx-padding: 3 0 0 0;
+}
+
+.contact-detail-panel .contact-reference {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+    -fx-fill: -contact-reference-fill;
     -fx-padding: 3 0 0 0;
 }
 
