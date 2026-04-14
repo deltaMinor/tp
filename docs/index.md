@@ -12,8 +12,8 @@
 
 **B2B4U is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AddressBook, head over to the [**User Guide**]({{ baseUrl }}/UserGuide.html).
-* If you are interested about developing AddressBook, the [**Developer Guide**]({{ baseUrl }}/DeveloperGuide.html) is a good place to start.
+* If you are interested in using B2B4U, head over to the [**User Guide**]({{ baseUrl }}/UserGuide.html).
+* If you are interested about developing B2B4U, the [**Developer Guide**]({{ baseUrl }}/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

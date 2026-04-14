@@ -18,7 +18,7 @@ import seedu.address.model.contact.Note;
 public class ReminderWindow extends UiPart<Stage> {
 
     public static final String REMINDER_MESSAGE =
-            String.format("The following reminders are due in %d days: \n", Note.DUE_PERIOD_DAYS);
+            String.format("The following reminders are due within %d days: \n", Note.DUE_PERIOD_DAYS);
 
     private static final Logger logger = LogsCenter.getLogger(ReminderWindow.class);
     private static final String FXML = "ReminderWindow.fxml";

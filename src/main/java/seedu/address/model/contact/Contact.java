@@ -150,7 +150,9 @@ public class Contact {
                 || containsInEmail(string)
                 || containsInAddress(string)
                 || containsInNotes(string)
-                || containsInTags(string);
+                || containsInTags(string)
+                || (hasReminders()
+                        && (string.equalsIgnoreCase("reminder") || string.equalsIgnoreCase("reminders")));
     }
 
     /**
@@ -293,6 +295,13 @@ public class Contact {
      */
     public boolean hasLastContacted() {
         return lastContacted.isPresent();
+    }
+
+    /**
+     * Checks if this contact contain reminders.
+     */
+    public boolean hasReminders() {
+        return notes.stream().anyMatch(Note::isReminder);
     }
 
     /**

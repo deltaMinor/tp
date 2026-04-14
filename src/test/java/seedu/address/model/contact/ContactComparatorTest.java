@@ -75,6 +75,22 @@ public class ContactComparatorTest {
     }
 
     @Test
+    public void getDescription_identity_returnsDefaultOrder() {
+        assertEquals("default order", identityComparator.getDescription());
+    }
+
+    @Test
+    public void getDescription_singleField_returnsFieldAndOrder() {
+        assertEquals("name (ascending)", comparatorA1.getDescription());
+    }
+
+    @Test
+    public void getDescription_multipleFields_returnsCommaSeparated() {
+        assertEquals("last contacted (descending), tag 'friends' (descending), phone (ascending)",
+                comparatorB1.getDescription());
+    }
+
+    @Test
     public void hasAllComparators() {
         for (Field field : Field.values()) {
             for (Order order : Order.values()) {

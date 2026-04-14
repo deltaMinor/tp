@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -35,6 +36,8 @@ public class ContactCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private FlowPane info;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
@@ -46,6 +49,8 @@ public class ContactCard extends UiPart<Region> {
     private Label lastUpdated;
     @FXML
     private VBox notesContainer;
+    @FXML
+    private ScrollPane notesScrollPane;
     @FXML
     private FlowPane tags;
 
@@ -82,34 +87,36 @@ public class ContactCard extends UiPart<Region> {
         UiUtil.show(this.lastUpdated);
         if (!(contact.getNotes().isEmpty())) {
             NotesTextFlow notes = new NotesTextFlow(contact.getNotes(), allContacts);
-            notes.setNewMaxHeight(notesContainer.getMaxHeight()
-                    - (notesContainer.getPadding().getTop() + notesContainer.getPadding().getBottom()));
-            notesContainer.getChildren().add(notes);
+            notesScrollPane.setContent(notes);
         } else {
             UiUtil.hide(notesContainer);
         }
-        if (!(contact.getTags().isEmpty()
-                && contact.getReminders().isEmpty()
-                && contact.getLastContacted().isEmpty())) {
+
+        // Set up info flow pane
+        if (!(contact.getReminders().isEmpty() && contact.getLastContacted().isEmpty())) {
+            contact.getLastContacted().ifPresent(lc -> {
+                Label lastContactedLabel = new Label("Last Contacted: " + lc);
+                info.getChildren().add(lastContactedLabel);
+            });
+            if (!contact.getReminders().isEmpty()) {
+                Label reminderLabel = new Label("Reminder");
+                if (contact.hasDueReminders()) {
+                    reminderLabel.getStyleClass().add("warning-label");
+                }
+                info.getChildren().add(reminderLabel);
+            }
+        } else {
+            UiUtil.hide(info);
+        }
+
+        // Set up tags flow pane
+        if (!contact.getTags().isEmpty()) {
             contact.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.name))
                     .forEach(tag -> tags.getChildren().add(
                         tag instanceof RankedTag
                             ? new RankedTagLabel((RankedTag) tag)
                             : new Label(tag.name)));
-
-            if (!contact.getLastContacted().isEmpty()) {
-                Label lastContactedLabel = new Label("Last Contacted: " + contact.getLastContacted().get());
-                tags.getChildren().add(lastContactedLabel);
-            }
-
-            if (!contact.getReminders().isEmpty()) {
-                Label reminderLabel = new Label("Reminder");
-                if (contact.hasDueReminders()) {
-                    reminderLabel.getStyleClass().add("warning-label");
-                }
-                tags.getChildren().add(reminderLabel);
-            }
         } else {
             UiUtil.hide(tags);
         }

@@ -8,6 +8,8 @@
 
 Business to Business for You (B2B4U) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, B2B4U can get your contact management tasks done faster than traditional GUI apps.
 
+B2B4U is designed for **consultants at medium-sized consulting or PR agencies** who need to manage long-term relationships with clients and companies. A contact in B2B4U can represent an individual person or a business entity, with optional fields to accommodate different contact types (e.g. a business may not have a physical address). It provides quick, up-to-date access to client data through a simple, unified interface — helping you deliver fast and on-point responses.
+
 ## Table of Contents
 
 - [B2B4U User Guide](#b2b4u-user-guide)
@@ -235,7 +237,9 @@ If an incorrectly input date/time is indeed recorded, the user should use one of
 
 **Name(**`n/`**):**
 - The contact's name.
-- Can only contain alphanumeric characters and spaces.
+- Can contain symbols `.` `'` `-` `_` `&` `/` and letter characters from any language.
+- First character must be a letter character.
+- Must be non-empty.
 
 **Phone number(**`p/`**):**
 - The contact's phone number.
@@ -275,10 +279,10 @@ If an incorrectly input date/time is indeed recorded, the user should use one of
 ### Adding Contacts
 
 To add a new contact, use the [`add` command]({{ baseUrl }}/user-guide/add-contact.html).
-Format: `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…​`
 
-- At least **one** of `p/PHONE` or `e/EMAIL` must be provided.
-- Names are standardized to **Title Case**.
+Format: `add n/NAME (p/PHONE | e/EMAIL) [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…​`
+
+- At least **one** (or both) of `p/PHONE` or `e/EMAIL` must be provided.
 - After adding, if similar contacts exist, the list will filter to show them.
 
 **Examples:**
@@ -293,10 +297,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED]
 
 - At least **one** optional field must be provided.
 - Editing tags **replaces all existing tags** rather than adding to them.
+- You can remove an optional field by providing its prefix with no value (e.g. `t/` to clear all tags, `p/` to remove the phone number).
 
 **Examples:**
 - `edit 1 p/91234567 e/johndoe@example.com`
-- `edit 2 n/Betsy Crower t/`
+- `edit 2 n/Betsy Crower t/` — renames and clears all tags
 
 ### Deleting Contacts
 
@@ -348,7 +353,7 @@ To manage notes and reminders for a contact, use the [`note` command]({{ baseUrl
 | [**Add a note**]({{ baseUrl }}/user-guide/notes.html#add-a-note)                         | `note INDEX NOTE [on/TIME]`                   | Appends a note to the contact. Including `on/TIME` turns it into a [reminder](#reminders). |
 | [**Edit a note**]({{ baseUrl }}/user-guide/notes.html#edit-a-specific-note)              | `note INDEX el/NOTE_INDEX NEW_NOTE [on/TIME]` | Replaces the note at the specified position.                                               |
 | [**Remove a specific note**]({{ baseUrl }}/user-guide/notes.html#remove-a-specific-note) | `note INDEX cl/NOTE_INDEX`                    | Removes the note at the specified position.                                                |
-| [**Remove first N notes**]({{ baseUrl }}/user-guide/notes.html#remove-the-first-n-notes) | `note INDEX c/LINES_TO_REMOVE`                | Removes the first *N* notes, where *N* = `LINES_TO_REMOVE`.                                |
+| [**Remove first N notes**]({{ baseUrl }}/user-guide/notes.html#remove-the-first-n-notes) | `note INDEX co/LINES_TO_REMOVE`               | Removes the first *N* notes, where *N* = `LINES_TO_REMOVE`.                                |
 | [**Clear all notes**]({{ baseUrl }}/user-guide/notes.html#clear-all-notes)               | `note INDEX ca/`                              | Removes all notes from the contact.                                                        |
 
 Notes support **contact references** using the `@INDEX` syntax, which creates a bidirectional association between two contacts. Both contacts will appear when searching for either one using `find @INDEX`.
@@ -367,11 +372,17 @@ By default, B2B4U displays all contacts sorted by **most urgent reminder** first
 B2B4U also provides commands to filter and sort the contact list, which is useful when managing a large number of contacts.
 
 **Filtering:**
+
+Format: `find [KEYWORD]… [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`
+
 - Use the [`find` command]({{ baseUrl }}/user-guide/find-contacts.html) with keywords or field-specific prefixes to filter contacts (e.g. `find n/Alex t/friends`).
 - Use `find @INDEX` to find all contacts associated with the contact at that index.
 - Use [`find` without any arguments]({{ baseUrl }}/user-guide/find-contacts.html#clearing-filters) to remove all active filters.
 
 **Sorting:**
+
+Format: `sort [n/asc | desc] [p/asc | desc] [e/asc | desc] [a/asc | desc] [lu/asc | desc] [lc/asc | desc] [t/TAG_NAME:asc | desc]…`
+
 - Use the [`sort` command]({{ baseUrl }}/user-guide/sort-contacts.html) with field prefixes and `asc` or `desc` to specify the [sort direction]({{ baseUrl }}/user-guide/sort-contacts.html#sort-order-by-field) (e.g. `sort n/asc` to sort by name A–Z, `sort lc/desc` to sort by last contacted, newest first).
 - Use [`sort` without any arguments]({{ baseUrl }}/user-guide/sort-contacts.html#resetting-sort-order) to reset to the default sort order.
 
@@ -460,17 +471,17 @@ Install B2B4U on the new computer, then replace the empty data file it creates w
 | Action                   | Format         | Parameters                                                                                                                    | Examples                                                                                           |
 | ------------------------ | -------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | **Help**                 | `help`         | `[COMMAND]`                                                                                                                   | `help add`                                                                                         |
-| **Add contact**          | `add`          | `n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`                                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add contact**          | `add`          | `n/NAME (p/PHONE \| e/EMAIL) [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`                                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Edit contact**         | `edit`         | `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`                                                 | `edit 2 n/James Lee e/jameslee@example.com`                                                        |
 | **Delete contact**       | `delete`       | `INDEX`                                                                                                                       | `delete 3`                                                                                         |
 | **Clear all contacts**   | `clear`        |                                                                                                                               |                                                                                                    |
 | **Add note**             | `note`         | `INDEX NOTE [on/TIME]`                                                                                                        | `note 1 To meet in February on/15 Apr`                                                             |
 | **Edit note**            | `note`         | `INDEX el/NOTE_INDEX NEW_NOTE [on/TIME]`                                                                                      | `note 1 el/1 Updated note text.`                                                                   |
 | **Remove specific note** | `note`         | `INDEX cl/NOTE_INDEX`                                                                                                         | `note 1 cl/2`                                                                                      |
-| **Remove first N notes** | `note`         | `INDEX c/LINES_TO_REMOVE`                                                                                                     | `note 1 c/2`                                                                                       |
+| **Remove first N notes** | `note`         | `INDEX co/LINES_TO_REMOVE`                                                                                                    | `note 1 co/2`                                                                                      |
 | **Clear all notes**      | `note`         | `INDEX ca/`                                                                                                                   | `note 1 ca/`                                                                                       |
 | **List contacts**        | `list`         |                                                                                                                               |                                                                                                    |
-| **Find contacts**        | `find`         | `[KEYWORD]… [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `find n/James t/friends`                                                                           |
+| **Find contacts**        | `find`         | `[KEYWORD]… [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`                                            | `find n/James t/friends`                                                                           |
 | **Find by association**  | `find`         | `@INDEX`                                                                                                                      | `find @1`                                                                                          |
 | **Clear filters**        | `find`         |                                                                                                                               |                                                                                                    |
 | **Sort contacts**        | `sort`         | `[n/asc \| desc] [p/asc \| desc] [e/asc \| desc] [a/asc \| desc] [lu/asc \| desc] [lc/asc \| desc] [t/TAG_NAME:asc \| desc]…` | `sort n/asc t/friends:desc`                                                                        |

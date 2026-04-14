@@ -12,6 +12,8 @@ public abstract class NoteCommand extends Command {
 
     public static final String COMMAND_WORD = "note";
 
+    public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists for this contact.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the notes of the contact identified "
             + "by the index number used in the last contact listing. "
             + "New notes will be stacked underneath existing ones.\n"

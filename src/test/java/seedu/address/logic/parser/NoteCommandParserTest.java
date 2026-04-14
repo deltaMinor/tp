@@ -208,6 +208,12 @@ public class NoteCommandParserTest {
                 "1 " + PREFIX_CLEAR_OLDEST + "1 " + PREFIX_CLEAR_ALL,
                 MESSAGE_INVALID_FORMAT);
 
+        // clear all + argument
+        assertParseFailure(
+                parser,
+                "1 " + PREFIX_CLEAR_ALL + "1",
+                MESSAGE_INVALID_FORMAT);
+
         // add + clear + clear all
         assertParseFailure(
                 parser,

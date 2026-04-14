@@ -45,6 +45,9 @@ public class NoteAddCommand extends NoteCommand {
         Note resolvedNote = resolveContactReferences(note, lastShownList);
 
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        if (contactToEdit.getNotes().stream().anyMatch(n -> n.equals(resolvedNote))) {
+            throw new CommandException(NoteCommand.MESSAGE_DUPLICATE_NOTE);
+        }
         List<Note> newNotes = new ArrayList<>(contactToEdit.getNotes());
         newNotes.add(resolvedNote);
 

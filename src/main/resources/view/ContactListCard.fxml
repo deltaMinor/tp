@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,7 +27,20 @@
                                 <Region fx:constant="USE_PREF_SIZE" />
                             </minWidth>
                         </Label>
-                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                        <Label fx:id="name" styleClass="cell_big_label" text="\$first">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
+                        <FlowPane fx:id="info" translateY="2.0">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0"/>
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="6.0" />
+                            </padding>
+                        </FlowPane>
                         <Pane HBox.hgrow="ALWAYS" />
                         <Label fx:id="lastUpdated" alignment="TOP_RIGHT" minWidth="-Infinity" styleClass="cell_soft_label, italic" text="\$lastUpdated">
                             <padding>
@@ -53,6 +67,10 @@
                 <padding>
                     <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                 </padding>
+                <ScrollPane fx:id="notesScrollPane" fitToWidth="true" minHeight="0.0" styleClass="cell_small_label, notes-cell-background" VBox.vgrow="SOMETIMES">
+                    <content>
+                    </content>
+                </ScrollPane>
             </VBox>
         </VBox>
         <rowConstraints>

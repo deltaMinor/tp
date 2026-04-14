@@ -97,6 +97,11 @@ public final class ContactTagComparator extends ContactComparator {
     }
 
     @Override
+    protected String getSingleDescription() {
+        return "tag '" + tag + "' (" + order.name().toLowerCase() + ")";
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
             .add("tag", tag)

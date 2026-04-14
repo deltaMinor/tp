@@ -51,7 +51,7 @@ public class NotesTextFlow extends TextFlow {
                         .filter(c -> c.getId().equals(refId))
                         .map(c -> c.getName().fullName)
                         .findFirst()
-                        .orElse("@" + uuidStr);
+                        .orElse("@Unknown");
 
                 Text refText = new Text(displayName);
                 refText.getStyleClass().add("contact-reference");

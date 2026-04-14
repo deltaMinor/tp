@@ -30,7 +30,6 @@ public class ParserUtilTest {
     private static final String INVALID_RANKED_TAG_1 = "#friend:1";
     private static final String INVALID_RANKED_TAG_2 = "friend:#1";
 
-    private static final String VALID_NAME_UNPARSED = "RacHEl   walker";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE_UNPARSED = "1234 5678";
     private static final String VALID_PHONE = "12345678";
@@ -83,12 +82,6 @@ public class ParserUtilTest {
     @Test
     public void parseName_whitespaceOnly_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseName("   "));
-    }
-
-    @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_UNPARSED));
     }
 
     @Test

@@ -57,6 +57,19 @@ public class NoteAddCommandTest {
     }
 
     @Test
+    public void execute_duplicateNote_failure() {
+        Contact contactToEdit = model.getDisplayedContactList().get(0);
+        Contact withNote = new Contact(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
+                contactToEdit.getAddress(), contactToEdit.getLastContacted(), NOTES, contactToEdit.getTags());
+        Model testModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        testModel.setContact(model.getDisplayedContactList().get(0), withNote);
+        testModel.resetDisplayedContactList();
+
+        NoteAddCommand command = new NoteAddCommand(INDEX_FIRST_CONTACT, NOTE);
+        assertCommandFailure(command, testModel, NoteCommand.MESSAGE_DUPLICATE_NOTE);
+    }
+
+    @Test
     public void equals() {
         final NoteAddCommand standardCommand = new NoteAddCommand(INDEX_FIRST_CONTACT, NOTE);
 

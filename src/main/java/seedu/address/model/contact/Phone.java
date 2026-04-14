@@ -11,7 +11,9 @@ public class Phone implements Comparable<Phone> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain '+' and digits, and it should be 5-15 digits long";
+            "Phone numbers should only contain '+' and digits. "
+            + "Without a country code, they should be 5-14 digits long. "
+            + "With a country code (starting with '+'), they should be 8-15 digits long";
     public static final String VALIDATION_REGEX = "^(\\+\\d{8,15}|\\d{5,14})$";
     public final String value;
 

@@ -2,7 +2,7 @@
 
 Finds contacts whose fields match the specified search criteria.
 
-Format: `find [KEYWORD]… [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `find [KEYWORD]… [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lc/LAST_CONTACTED] [t/TAG]…`
 or: `find @INDEX` to find contacts associated with the contact at INDEX
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
@@ -11,7 +11,7 @@ or: `find @INDEX` to find contacts associated with the contact at INDEX
   * Example: Given contact "Alex Yeoh" with note "to meet _on_ Jun 19, 2026"
     * `find Jun` will display contact "Alex Yeoh"
     * `find June` **will not** display contact "Alex Yeoh"
-* Prefixed searches (`n/`, `p/`, `e/`, `a/`) filter by the specified field using partial matching.
+* Prefixed searches (`n/`, `p/`, `e/`, `a/`, `lc/`) filter by the specified field using partial matching.
 * `t/TAG` filters by tag using **exact** matching (e.g. `t/friend` will not match a tag named `friends`).
 * All search conditions are combined with **AND** logic — only contacts satisfying **every** condition are returned.
 * At least one search condition must be provided.

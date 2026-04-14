@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.timepoint.DateTimeUtil;
@@ -34,8 +34,6 @@ public class ContactDetailPanel extends UiPart<Region> {
     @FXML
     private Label lastUpdated;
     @FXML
-    private ScrollPane notesScrollPane;
-    @FXML
     private FlowPane tags;
     @FXML
     private VBox tagsContainer;
@@ -51,6 +49,8 @@ public class ContactDetailPanel extends UiPart<Region> {
     private VBox lastUpdatedContainer;
     @FXML
     private VBox notesContainer;
+    @FXML
+    private VBox notes;
 
     private ObservableList<Contact> allContacts;
 
@@ -112,9 +112,15 @@ public class ContactDetailPanel extends UiPart<Region> {
 
         // Notes
         if (!contact.getNotes().isEmpty()) {
-            NotesTextFlow notesTextFlow = new NotesTextFlow(contact.getNotes(), allContacts);
-            notesTextFlow.addStyleClass("detail-text-flow");
-            notesScrollPane.setContent(notesTextFlow);
+            notes.getChildren().clear();
+            contact.getNotes()
+                    .forEach(note -> {
+                        NoteLabel noteLabel = new NoteLabel(note, notes.getStyleClass().toString(), allContacts);
+                        noteLabel.hideHeader();
+                        Label indexLabel = new Label((notes.getChildren().size() + 1) + ". ");
+                        indexLabel.getStyleClass().add("note-index-label");
+                        HBox indexedNoteLabel = new HBox(indexLabel, noteLabel);
+                        notes.getChildren().add(indexedNoteLabel); });
             UiUtil.show(notesContainer);
         } else {
             UiUtil.hide(notesContainer);

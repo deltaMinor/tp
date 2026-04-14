@@ -13,6 +13,8 @@ Format: `note INDEX NOTE [on/TIME]`
 * Notes support **contact references** using the `@INDEX` syntax. When you include `@INDEX` in a note, it creates a link to the contact at that index. The reference is displayed as the contact's name in **bold and underlined** text.
 * If a referenced contact's name changes, the displayed name updates automatically.
 * If a referenced contact is deleted, the reference is replaced with the contact's name as plain text.
+* If a contact reference is corrupted (e.g. changed to an invalid value in the data file), it will be displayed as `@Unknown` in the note.
+* You cannot add a note that is **identical** to one already on that contact (same text **and** the same reminder time, if any). If you try, the command fails and no change is made.
 
 Examples:
 * `note 1 Likes to swim.`
@@ -28,6 +30,7 @@ Format: `note INDEX el/NOTE_INDEX NEW_NOTE [on/TIME]`
 * Replaces the note at position `NOTE_INDEX` of the contact at the specified `INDEX` with `NEW_NOTE`.
 * `NOTE_INDEX` refers to the position of the note as displayed (starting from 1).
 * Optionally include `on/TIME` to set or update the reminder for the edited note.
+* After editing, the note must not match **another** note on the same contact (same text **and** the same reminder time, if any). Otherwise the command fails and the note is left unchanged.
 
 Examples:
 * `note 1 el/1 Updated note text.` replaces the 1st note of the 1st contact.
@@ -49,15 +52,15 @@ Example:
 
 ### Remove the first N notes
 
-Format: `note INDEX c/LINES_TO_REMOVE`
+Format: `note INDEX co/LINES_TO_REMOVE`
 
 * Removes the first `LINES_TO_REMOVE` notes from the contact at the specified `INDEX`.
 * `LINES_TO_REMOVE` must be a non-negative integer.
 * If `LINES_TO_REMOVE` exceeds the number of existing notes, all notes are removed.
 
 Examples:
-* `note 1 c/1` removes the first note from the 1st contact.
-* `note 2 c/3` removes the first 3 notes from the 2nd contact.
+* `note 1 co/1` removes the first note from the 1st contact.
+* `note 2 co/3` removes the first 3 notes from the 2nd contact.
 
 ![remove notes]({{ baseUrl }}/images/removeNotes.png)
 

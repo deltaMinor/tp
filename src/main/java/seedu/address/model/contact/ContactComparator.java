@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 
@@ -97,6 +98,25 @@ public abstract class ContactComparator implements Comparator<Contact> {
         }
 
         return this.comparators.equals(otherObj.comparators);
+    }
+
+    /**
+     * Returns a user-friendly description of the sort criteria.
+     */
+    public String getDescription() {
+        if (comparators.isEmpty()) {
+            return "default order";
+        }
+        return comparators.stream()
+            .map(ContactComparator::getSingleDescription)
+            .collect(Collectors.joining(", "));
+    }
+
+    /**
+     * Returns the description for a single comparator.
+     */
+    protected String getSingleDescription() {
+        return "default order";
     }
 
     @Override

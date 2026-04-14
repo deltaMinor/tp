@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.TextFlow?>
 
 <VBox fx:id="detailPane" styleClass="contact-detail-panel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
@@ -21,73 +20,76 @@
         <Label fx:id="name" styleClass="detail-name" text="\$name" />
     </HBox>
 
-    <!-- Tags -->
-    <VBox fx:id="tagsContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Tags:" />
-        <FlowPane fx:id="tags" hgap="5" vgap="5">
-            <padding>
-                <Insets top="5" />
-            </padding>
-        </FlowPane>
-    </VBox>
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox styleClass="detail-section" VBox.vgrow="ALWAYS">
+            <!-- Tags -->
+            <VBox fx:id="tagsContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Tags:" />
+                <FlowPane fx:id="tags" hgap="5" vgap="5">
+                    <padding>
+                        <Insets top="5" />
+                    </padding>
+                </FlowPane>
+            </VBox>
 
-    <!-- Phone -->
-    <VBox fx:id="phoneContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Phone:" />
-        <Label fx:id="phone" styleClass="detail-value" text="\$phone" />
-    </VBox>
+            <!-- Phone -->
+            <VBox fx:id="phoneContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Phone:" />
+                <Label fx:id="phone" styleClass="detail-value" text="\$phone" />
+            </VBox>
 
-    <!-- Email -->
-    <VBox fx:id="emailContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Email:" />
-        <Label fx:id="email" styleClass="detail-value" text="\$email" />
-    </VBox>
+            <!-- Email -->
+            <VBox fx:id="emailContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Email:" />
+                <Label fx:id="email" styleClass="detail-value" text="\$email" />
+            </VBox>
 
-    <!-- Address -->
-    <VBox fx:id="addressContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Address:" />
-        <Label fx:id="address" styleClass="detail-value" text="\$address" wrapText="true" />
-    </VBox>
+            <!-- Address -->
+            <VBox fx:id="addressContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Address:" />
+                <Label fx:id="address" styleClass="detail-value" text="\$address" wrapText="true" />
+            </VBox>
 
-    <!-- Last Contacted -->
-    <VBox fx:id="lastContactedContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Last Contacted:" />
-        <Label fx:id="lastContacted" styleClass="detail-value" text="\$lastContacted" wrapText="true" />
-    </VBox>
+            <!-- Last Contacted -->
+            <VBox fx:id="lastContactedContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Last Contacted:" />
+                <Label fx:id="lastContacted" styleClass="detail-value" text="\$lastContacted" wrapText="true" />
+            </VBox>
 
-    <!-- Last Updated -->
-    <VBox fx:id="lastUpdatedContainer" styleClass="detail-section">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Last Updated:" />
-        <Label fx:id="lastUpdated" styleClass="detail-value" text="\$lastUpdated" wrapText="true" />
-    </VBox>
+            <!-- Last Updated -->
+            <VBox fx:id="lastUpdatedContainer" styleClass="detail-section">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Last Updated:" />
+                <Label fx:id="lastUpdated" styleClass="detail-value" text="\$lastUpdated" wrapText="true" />
+            </VBox>
 
-    <!-- Notes -->
-    <VBox fx:id="notesContainer" styleClass="detail-section" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" />
-        </padding>
-        <Label styleClass="detail-label" text="Notes:" />
-        <ScrollPane fx:id="notesScrollPane" fitToWidth="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
-            <content>
-            </content>
-        </ScrollPane>
-    </VBox>
+            <!-- Notes -->
+            <VBox fx:id="notesContainer" styleClass="detail-section" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label styleClass="detail-label" text="Notes:" />
+                    <VBox>
+                        <VBox fx:id="notes" styleClass="detail-value"/>
+                    </VBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
 </VBox>

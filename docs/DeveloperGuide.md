@@ -414,8 +414,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | consultant              | save availability information for selected contacts as a calendar and filter contacts based on availability | later on, I know when they can be contacted in person rather than needing to double-check ahead of time |
 | `*`      | beginner user           | pick up advanced functionalities gradually                                                                  | utilize more of the features provided                                                                   |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `B2B4U` and the **Actor** is the `user`, unless specified otherwise)
@@ -479,20 +477,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC5 - Filter contacts by criterion**
 
 **MSS**
-1. User requests to list contacts which fulfill given criteria
-2. B2B4U shows a list of all contacts which fulfill given criteria
+1. User requests to list contacts which fulfill a given criterion
+2. B2B4U shows a list of all contacts which fulfill the given criterion
 
     Use case ends.
 
 **Use case: UC6 - Sort contacts by criterion**
 
 **MSS**
-1. User requests to list contacts sorted by a given criteria
-2. B2B4U shows a list of all contacts in order of given criteria
+1. User requests to list contacts sorted by a given criterion
+2. B2B4U shows a list of all contacts in order of the given criterion
 
     Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -508,8 +504,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
 11. GUI should be usable for resolutions 1280x720 and higher, and for screen scales 150%.
 12. Should be packaged in a single JAR file of 100MB or less in size.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -542,7 +536,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br>
+     Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -566,6 +561,75 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
     Expected: Similar to previous.
 
+### Adding a contact
+
+1. Adding a contact with all fields
+
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends`<br>
+    Expected: New contact is added to the list. Details of the added contact shown in the status message.
+
+   2. Test case: `add n/Jane Doe`<br>
+    Expected: No contact is added. Error details shown in the status message, as at least a phone number or email is required.
+
+   3. Test case: `add n/John Doe p/98765432` followed by `add n/John Doe p/98765432`<br>
+    Expected: Second command fails with a duplicate contact error message.
+
+### Editing a contact
+
+1. Editing a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+
+   2. Test case: `edit 1 p/91234567`<br>
+    Expected: Phone number of the first contact is updated. Details of the edited contact shown in the status message.
+
+   3. Test case: `edit 1 t/`<br>
+    Expected: All tags of the first contact are removed.
+
+   4. Test case: `edit 0 p/91234567`<br>
+    Expected: No contact is edited. Error details shown in the status message.
+
+### Adding a note to a contact
+
+1. Adding notes and reminders
+
+   1. Prerequisites: List all contacts using the `list` command. At least one contact in the list.
+
+   2. Test case: `note 1 Follow up with client`<br>
+    Expected: Note is added to the first contact. Status message confirms the note was added.
+
+   3. Test case: `note 1 Meeting on/25/12/2026`<br>
+    Expected: A reminder note is added. The contact gains a `Reminder` tag.
+
+   4. Test case: `note 1 ca/`<br>
+    Expected: All notes are cleared from the first contact.
+
+### Finding contacts
+
+1. Finding contacts by keyword
+
+   1. Test case: `find alex`<br>
+    Expected: Contacts with "alex" in any field are displayed.
+
+   2. Test case: `find n/Alex t/friends`<br>
+    Expected: Contacts matching both name "Alex" and tag "friends" are displayed.
+
+   3. Test case: `find` (no arguments)<br>
+    Expected: All filters are cleared and all contacts are shown.
+
+### Sorting contacts
+
+1. Sorting contacts by field
+
+   1. Test case: `sort n/asc`<br>
+    Expected: Contacts are sorted by name in ascending order.
+
+   2. Test case: `sort lc/desc`<br>
+    Expected: Contacts are sorted by last contacted date, newest first.
+
+   3. Test case: `sort` (no arguments)<br>
+    Expected: Sort order is reset to default.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -577,3 +641,45 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: Corrupt data file (e.g. by adding random text to the file) and launch the app. <br>
     Expected: App loads with no contacts. The data file is overwritten when a contact is added.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Difficulty Level
+Compared to AB3, our project had a greater degree of complexity, as it involved functionality beyond the minimal requirements of a basic contact management application,
+notably a file management system and the undo/redo feature. Alongside the changes to the user interface, this project required a great amount of refactoring to allow for the features we planned.
+
+### Challenges faced
+**Command structure:**
+While implementing commands that affected elements beyond the contact list (i.e. file management commands, setting the theme, opening/closing the view panel),
+we have had to reevaluate what can be done within the scope of the `Command`'s `execute` function which could not directly access the UI elements,
+and took care to not break software engineering principles while altering the behaviour of classes outside of those directly related to command-execution.
+
+**GUI implementation:**
+Implementing GUI elements that displayed information with clarity within the constraints of JavaFX's provided tools proved to be a struggle.
+For example, while JavaFX's `Label` can truncate text with ellipses, it was not versatile enough to contain highlighted text seamlessly, unlike `TextFlow` which could not truncate text.
+In the end, some compromises had to be made to create an interface that was as user-friendly as we can feasibly put together.
+
+### Effort required
+**Design and Refactoring:**
+Restructuring the GUI to be more user-friendly and allow for features such as custom themes,
+as well as altering the functionality of commands and field constraints of contacts required careful refactoring and the creation of new class structures.
+
+**Testing and Debugging:**
+To ensure the reliability of our system, we wrote comprehensive test cases to verify that each feature and command functioned correctly.
+
+### Achievements
+In conclusion, our team successfully designed and implemented key features, resolved bugs, and navigated potential integration challenges.
+While we initially encountered difficulties with more complex components such as file access and GUI restructuring,
+effective collaboration allowed us to overcome these hurdles and accomplish our objectives for B2B4U.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Allow user to select "AND" and "OR" basis for `find` command:** The current `find` command applies all the search filters on an "AND" basis, meaning only contacts that match every parameter in the command will be displayed. We plan to add the option for users to search on an "OR" basis as well, such that any contact that matches at least one of the parameter will be displayed.
+
+2. **Allow user to set reminder alert time:** Currently, users will only be notified of reminders that are due within 7 days. We plan to add functionality for the user to adjust when they would like to be reminded for their reminders, such that they can be notified earlier or later than a week prior.

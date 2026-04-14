@@ -57,8 +57,16 @@ public class NoteEditCommand extends NoteCommand {
         // Resolve @INDEX references in note text to @{UUID}
         Note resolvedNote = resolveContactReferences(newNote, lastShownList);
 
+        int noteZeroBased = noteIndex.getZeroBased();
+        List<Note> existingNotes = contactToEdit.getNotes();
+        for (int i = 0; i < existingNotes.size(); i++) {
+            if (i != noteZeroBased && existingNotes.get(i).equals(resolvedNote)) {
+                throw new CommandException(NoteCommand.MESSAGE_DUPLICATE_NOTE);
+            }
+        }
+
         List<Note> newNotes = new ArrayList<>(contactToEdit.getNotes());
-        newNotes.set(noteIndex.getZeroBased(), resolvedNote);
+        newNotes.set(noteZeroBased, resolvedNote);
 
         Contact editedContact = new Contact(contactToEdit.getId(), contactToEdit.getName(),
                 contactToEdit.getPhone(), contactToEdit.getEmail(),

@@ -97,6 +97,9 @@ public class NoteCommandParser implements Parser<NoteCommand> {
      * @return A {@code NoteClearCommand} object with the specified index.
      */
     private NoteClearAllCommand parseNoteClearAllCommand(ArgumentMultimap argMultimap) throws ParseException {
+        if (!argMultimap.getValue(PREFIX_CLEAR_ALL).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteAddCommand.MESSAGE_USAGE));
+        }
         Index index = parseIndex(argMultimap.getPreamble());
         return new NoteClearAllCommand(index);
     }

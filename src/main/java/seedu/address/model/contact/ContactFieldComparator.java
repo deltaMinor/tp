@@ -105,6 +105,12 @@ public class ContactFieldComparator extends ContactComparator {
     }
 
     @Override
+    protected String getSingleDescription() {
+        return field.name().toLowerCase().replace("_", " ")
+            + " (" + order.name().toLowerCase() + ")";
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this).add("field", field).add("order", order).toString();
     }

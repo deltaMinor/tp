@@ -4,9 +4,12 @@ Reverts the last executed command that modified data.
 
 Format: `undo`
 
-* Only commands that modify data can be undone (e.g. `add`, `edit`, `delete`, `note`, `clear`, `sort`).
-* Commands that do not modify data (`help`, `view`, `close view`, `list`, `find`, `undo`, `redo`, `exit`) are ignored by undo.
-* Displays the feedback of the undone command.
+* Only the following commands can be undone:
+  * Commands that modify contact list data: `add`, `edit`, `delete`, `note`, `clear`
+  * Commands that change the filter/sort patterns: `list`, `find`, `sort`
+  * Commands that modify application settings: `file`, `theme`
+* Commands that do not fall in the above categories (`help`, `view`, `close view`, `undo`, `redo`, `exit`) are ignored by undo.
+* Displays the feedback of the undone command after execution.
 
 Examples:
 * `delete 1` followed by `undo` restores the deleted contact.

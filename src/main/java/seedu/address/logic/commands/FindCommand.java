@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,6 +20,7 @@ public abstract class FindCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE_KEYWORDS] "
             + "[" + PREFIX_EMAIL + "EMAIL_KEYWORDS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS_KEYWORDS] "
+            + "[" + PREFIX_LAST_CONTACTED + "LAST_CONTACTED_KEYWORDS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Or: " + COMMAND_WORD + " @INDEX to find contacts associated with the contact at INDEX\n"
             + "Examples: " + COMMAND_WORD + " "

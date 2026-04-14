@@ -116,7 +116,7 @@ public class NoteLabel extends HBox {
                     .filter(c -> c.getId().equals(refId))
                     .map(c -> c.getName().fullName)
                     .findFirst()
-                    .orElse("@" + uuidStr);
+                    .orElse("@Unknown");
 
             Text refText = new Text(displayName);
             refText.getStyleClass().add("contact-reference");

@@ -105,8 +105,8 @@ public class ContactCardTest extends GuiUnitTest {
                     .withNotes(dueReminderString)
                     .build(), 3, FXCollections.observableArrayList());
 
-            FlowPane tags = getPrivateField(card, "tags", FlowPane.class);
-            List<Label> labels = tags.getChildren().stream()
+            FlowPane info = getPrivateField(card, "info", FlowPane.class);
+            List<Label> labels = info.getChildren().stream()
                     .filter(node -> node instanceof Label)
                     .map(node -> (Label) node)
                     .collect(Collectors.toList());
