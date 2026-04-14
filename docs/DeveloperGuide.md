@@ -431,7 +431,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `B2B4U` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `B2B4U` application and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC1 - Check User Guide**
 
@@ -504,6 +504,173 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. B2B4U shows a list of all contacts in order of the given criterion
 
     Use case ends.
+
+**Use case: UC7 - Add a note or reminder**
+
+**MSS**
+
+1. User requests to append a note to a contact identified by index in the displayed list.
+2. B2B4U validates the contact index and parses the note text.
+3. B2B4U saves the new note on the contact.
+4. B2B4U displays confirmation with the contact’s updated notes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The contact index is invalid.
+  * 1a1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 1b. User provides `on/TIME` together with the note.
+  * 1b1. B2B4U parses and stores the note as a reminder.
+
+    Use case resumes at step 3.
+
+* 2a. The new note is identical to an existing note on the same contact (same text and same reminder, if any).
+  * 2a1. B2B4U shows an error message; the contact’s notes are unchanged.
+
+    Use case ends.
+
+* 2b. The reminder time cannot be parsed (when `on/` is used).
+  * 2b1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 2c. Note text includes one or more `@INDEX` references.
+  * 2c1. B2B4U resolves each valid `@INDEX` to the corresponding contact reference before saving.
+
+    Use case resumes at step 3.
+
+**Use case: UC8 - Edit a note**
+
+**MSS**
+
+1. User requests to <u>view contacts (UC3)</u> and replace the content of a specific note line for a contact.
+2. B2B4U validates the contact index, note line index, and new note text (including any `@INDEX` references).
+3. B2B4U saves the updated note line.
+4. B2B4U displays confirmation with the contact’s updated notes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The contact index or note line index is invalid.
+  * 1a1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 2a. The edited note would be identical to another existing note on the same contact.
+  * 2a1. B2B4U shows an error message; the note line is unchanged.
+
+    Use case ends.
+
+**Use case: UC9 - Remove or clear notes**
+
+**MSS**
+
+1. User requests to remove one or more note lines from a contact, or clear all notes for that contact.
+2. B2B4U validates the contact index (and note indices or counts, as applicable).
+3. B2B4U updates the contact’s note list.
+4. B2B4U displays confirmation.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The contact index or a specified note index is invalid.
+  * 1a1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 2a. The contact has no notes but the user requests removal by line index.
+  * 2a1. B2B4U shows an error message.
+
+    Use case ends.
+
+**Use case: UC10 - Undo or redo a change**
+
+**MSS**
+
+1. User requests to undo the most recent reversible change, or to redo a change that was just undone.
+2. B2B4U restores the model to the earlier or later saved snapshot.
+3. B2B4U displays confirmation (including what was undone or redone, where applicable).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No snapshot is available in the requested direction.
+  * 1a1. B2B4U shows an error message.
+
+    Use case ends.
+
+**Use case: UC11 - Open a different contact data file**
+
+**MSS**
+
+1. User requests to switch the active contact data to another file (by file name).
+2. B2B4U validates the file name, updates the active file path, and loads data from that file.
+3. B2B4U displays the resulting contact list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The file name is invalid.
+  * 1a1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 2a. The file exists but its contents cannot be loaded as valid data.
+  * 2a1. B2B4U starts with an empty contact list for that file and continues.
+
+    Use case ends.
+
+* 2b. The requested file does not yet exist.
+  * 2b1. B2B4U starts with a new empty contact list for that file and continues.
+
+    Use case ends.
+
+**Use case: UC12 - Delete a contact data file**
+
+**MSS**
+
+1. User requests to delete a contact data file by name.
+2. If the target file is non-empty, B2B4U requests confirmation from the user before continuing.
+3. User confirms deletion.
+4. B2B4U removes the file from storage.
+5. B2B4U displays confirmation.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The named file is the one currently in use.
+  * 1a1. B2B4U shows an error message; no file is deleted.
+
+    Use case ends.
+
+* 1b. The file does not exist, is not a valid data file, deletion is aborted, or another error occurs.
+  * 1b1. B2B4U shows an error message.
+
+    Use case ends.
+
+* 2a. The target file is empty.
+  * 2a1. B2B4U skips confirmation and proceeds with deletion.
+
+    Use case resumes at step 4.
+
+* 3a. User denies confirmation.
+  * 3a1. B2B4U aborts deletion and shows an error message.
+
+    Use case ends.
+
+* 3b. Confirmation is pending.
+  * 3b1. The app remains blocked by the confirmation dialog until the user provides a response.
+
+    Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
