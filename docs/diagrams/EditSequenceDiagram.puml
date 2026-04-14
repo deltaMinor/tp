@@ -56,7 +56,7 @@ activate CommandResult
 CommandResult --> EditCommand
 deactivate CommandResult
 
-EditCommand --> [: r
+[<-- EditCommand : r
 deactivate EditCommand
 
 @enduml
