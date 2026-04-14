@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FileCommandParser" as FileCommandParser LOGIC_COLOR
+participant "e:FileOpenCommand" as FileOpenCommand LOGIC_COLOR
+end box
+
+
+
+[-> LogicManager : execute("file open/new_list")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("file open/new_list")
+activate AddressBookParser
+
+create FileCommandParser
+AddressBookParser -> FileCommandParser
+activate FileCommandParser
+
+FileCommandParser --> AddressBookParser
+deactivate FileCommandParser
+
+AddressBookParser -> FileCommandParser : parse("open/new_list")
+activate FileCommandParser
+
+note right of FileCommandParser
+  Check: file name must contain
+  only alphanumeric characters
+  and the underscore
+end note
+
+create FileOpenCommand
+FileCommandParser -> FileOpenCommand
+activate FileOpenCommand
+
+FileOpenCommand --> FileCommandParser :
+deactivate FileOpenCommand
+
+FileCommandParser --> AddressBookParser : e
+deactivate FileCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FileCommandParser -[hidden]-> AddressBookParser
+destroy FileCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
