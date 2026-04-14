@@ -24,8 +24,6 @@ public class NoteLabel extends HBox {
 
     private static final String FXML = "/view/NoteLabel.fxml";
 
-    private String style = "-fx-font-family: 'Segoe UI'; -fx-font-size: 13px; -fx-fill: white;";
-
     @FXML
     private Label reminderHeader;
     @FXML
