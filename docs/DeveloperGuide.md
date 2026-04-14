@@ -880,4 +880,8 @@ Team size: 5
 
 1. **Allow user to select "AND" and "OR" basis for `find` command:** The current `find` command applies all the search filters on an "AND" basis, meaning only contacts that match every parameter in the command will be displayed. We plan to add the option for users to search on an "OR" basis as well, such that any contact that matches at least one of the parameter will be displayed.
 
-2. **Allow user to set reminder alert time:** Currently, users will only be notified of reminders that are due within 7 days. We plan to add functionality for the user to adjust when they would like to be reminded for their reminders, such that they can be notified earlier or later than a week prior.
+2. **Allow user to filter contacts by reminder time:** Currently, reminders and the `find` command only interact via the text they contain as a note and the alphanumeric value of the time it was set to. While this allows users to search for contacts on a specific date, we plan to improve functionality of the `find` function to filter for contacts before and/or after a specified date/time as well.
+
+3. **Allow user to set reminder alert time:** Currently, users will only be notified of reminders that are due within 7 days. We plan to add functionality for the user to adjust when they would like to be reminded for their reminders, such that they can be notified earlier or later than a week prior.
+
+4. **Allow user to set their own theme and background:** Currently, B2B4U is limited to seven colour palettes as themes, and additional themes can only be created by the dev team. We plan to provide users the ability to create their own colour palettes which better fit their needs and additionally the option to set the background to an image rather than a flat colour.
