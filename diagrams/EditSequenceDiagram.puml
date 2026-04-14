@@ -55,35 +55,13 @@ deactivate AddressBookParser
 LogicManager -> EditCommand : execute(m)
 activate EditCommand
 
-EditCommand -> EditCommand : createEditedContact()
-activate EditCommand
-
-note right of EditCommand
-  clearPhone is true,
-  so updatedPhone = Optional.empty()
-end note
-
-EditCommand --> EditCommand : editedContact
-deactivate EditCommand
-
-EditCommand -> EditCommand : validate(editedContact)
-activate EditCommand
-
-note right of EditCommand
-  Check: contact must have
-  at least phone or email
-end note
-
-EditCommand --> EditCommand
-deactivate EditCommand
-
-EditCommand -> Model : setContact(contactToEdit, editedContact)
+EditCommand -> Model : validate(editedContact)
 activate Model
 
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> Model : resetDisplayedContactList()
+EditCommand -> Model : setContact(contactToEdit, editedContact)
 activate Model
 
 Model --> EditCommand

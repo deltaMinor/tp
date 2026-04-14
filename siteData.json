@@ -53,7 +53,7 @@
         "implementation": "Implementation",
         "remove-field-on-empty-edit": "Remove field on empty edit",
         "undo-redo-feature": "Undo/redo feature",
-        "proposed-data-archiving": "[Proposed] Data archiving",
+        "data-archiving": "Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
