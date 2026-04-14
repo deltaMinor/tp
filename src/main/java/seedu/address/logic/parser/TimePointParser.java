@@ -88,6 +88,9 @@ public class TimePointParser {
         String tomorrowDateString = dateToString(LocalDate.now().plusDays(1));
         timeStringCopy = Parser.replaceStringWithArraySelection(
                 timeStringCopy, new String[] {"TOMORROW", "TMRW", "TMR"}, tomorrowDateString);
+        String yesterdayDateString = dateToString(LocalDate.now().minusDays(1));
+        timeStringCopy = Parser.replaceStringWithArraySelection(
+                timeStringCopy, new String[] {"YESTERDAY", "YST", "YDAY"}, yesterdayDateString);
         String nextWeekDateString = dateToString(LocalDate.now().plusDays(7));
         timeStringCopy = Parser.replaceStringWithArraySelection(
                 timeStringCopy, new String[] {"NEXT WEEK"}, nextWeekDateString);

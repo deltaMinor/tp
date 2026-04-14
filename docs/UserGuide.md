@@ -146,7 +146,9 @@ Additionally, the input may contain the following parameters:
 The date/time input should fall into at least one of the following patterns, rather than randomly ordered:
 
 <box type="info" seamless>
+
 **Note:** In the following tables, `SEPARATOR` will be represented by `/`.
+
 </box>
 
 - Partial date(containing only `DAY` and `MONTH`):
@@ -188,12 +190,14 @@ The date/time input should fall into at least one of the following patterns, rat
 | Time-suffixed reverse middle-endian | `YEAR/DAY/MONTH/TIME` | `2026 31 Oct 12:00` |
 
 <box type="info" seamless>
+
 **Note:** For additional ease of input, B2B4U also allows the following input keywords which can be parsed as a date based on the current system time.
 
 | Keyword                               | Result                                            |
 |---------------------------------------|---------------------------------------------------|
-| `today`                               | Current system date                               |
-| `tomorrow`                            | The day after the current system date             |
+| `today` or `tdy`                      | Current system date                               |
+| `tomorrow` or `tmrw` or `tmr`         | The day after the current system date             |
+| `yesterday` or `yst` or `yday`        | The day before the current system date            |
 | `next week`                           | 7 days after the current system date              |
 | `sunday` or `sun`                     | The first Sunday after the current system date    |
 | `monday` or `mon`                     | The first Monday after the current system date    |
@@ -213,8 +217,11 @@ Once a valid date or time hsa been accepted as input, it will be displayed by B2
   - Example: 31 October 2026 will be displayed as "Oct 31, 2026".
 - A date with time is displayed in "`HH:mm`, `Mth` `DAY`, `YEAR`" format.
   - Example: 12:00 noon on 31 October 2026 will be displayed as "12:00, Oct 31, 2026".
+
 <box type="info" seamless>
+
 **Note:** Both of the above display formats are also accepted input formats by B2B4U.
+
 </box>
 
 To allow for user freedom, it is not necessary that the user creates an input that is a valid date, or even an input that resembles a time for a field related to time. <br>
